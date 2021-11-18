@@ -17,7 +17,7 @@ int main()
     //Convierte los valores de sisTime a compatibles con la estructura tm y luego asigno ese valor a tiempo.
 
 imprime_calendario:
-    printf("\tººººººººººººººººººººººººººººººCALENDARIOºººººººººººººººººººººººººººººº\n\n");
+    printf("\t******************************CALENDARIO*****************************\n\n");
     if (elige == 0)
     {
         dia = tiempo->tm_mday;
@@ -97,6 +97,7 @@ imprime_calendario:
         break;
     }
 
+    // Para el calculo del dia de la semana se utiliza las tablas de busqueda generadas a partir del algoritmo de Gauss
     if (febrero == 29)
     {
         switch (mes)
@@ -185,12 +186,11 @@ imprime_calendario:
         // Do, Lu, Ma, Mi, Ju, Vi, Sa
         // 0 , 1 ,  2,  3,  4,  5,  6
         diaDeSemana = ((anio - 1) % 7 + ((anio - 1) / 4 - (3 * ((anio - 1) / 100 + 1) / 4)) % 7 + moduloMes + 1 % 7) % 7;
-
         int i, m;
 
         printf("\nDo\tLu\tMar\tMier\tJue\tVier\tSab\n");
 
-        for (m = 0; m < diaDeSemana; m++) 
+        for (m = 0; m < diaDeSemana; m++)
         { //da espacios para acomodar el primer dia de la semana.
             printf("\t");
         }
@@ -200,7 +200,7 @@ imprime_calendario:
 
             if (i == 8 - diaDeSemana || i == 15 - diaDeSemana || i == 22 - diaDeSemana || i == 29 - diaDeSemana || i == 36 - diaDeSemana)
                 printf("\n");
-            
+
             if (i == dia) // resalta el dia en color verde si coincide con el ingresado
             {
                 printf("\033[42;30m");
@@ -208,7 +208,6 @@ imprime_calendario:
 
             printf("%d\t", i);
             printf("\033[0m"); // reset de color
-            
         }
 
         while (elige == 0)
